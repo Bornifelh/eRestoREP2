@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             BackgroundColor="#dfdc01"
+             x:Class="eResto.Views.AproposPage">
+    <ContentPage.Content>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                <ImageButton Grid.Row="0" HorizontalOptions="Start" VerticalOptions="Start" x:Name="retour" Clicked="Retour_Clicked" 
+                             HeightRequest="40" WidthRequest="40" Source="back.png" 
+                             BackgroundColor="Transparent"
+                             Margin="10"/>
+            
+            </StackLayout>
+
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

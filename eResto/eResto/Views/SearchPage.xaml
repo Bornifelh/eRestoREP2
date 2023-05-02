@@ -1,0 +1,91 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+              xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+             ios:Page.UseSafeArea="True"
+             xmlns:pancake="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             xmlns:helpers="clr-namespace:eResto.Helpers"
+             xmlns:vm="clr-namespace:eResto.ViewModels"
+            x:Class="eResto.Views.SearchPage">
+
+    <ContentPage.BindingContext>
+        <vm:ProductsViewModel/>
+    </ContentPage.BindingContext>
+
+    <ContentPage.Content>
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+
+            <Grid Margin="0,-65,0,0" Grid.Row="1" Grid.Column="0">
+
+                <Frame Padding="2" BackgroundColor="#009fe3" Grid.Row="1" VerticalOptions="Start" HorizontalOptions="FillAndExpand">
+                    <SearchBar Grid.Column="0" Placeholder="Rechercher votre produit"
+                               x:Name="SearchProduit"
+                               SearchCommand="{Binding SearchResults}"
+                               SearchCommandParameter="{Binding Text, Source={x:Reference SearchProduit}}"
+                           HorizontalOptions="FillAndExpand"/>
+                </Frame>
+
+            </Grid>
+
+
+
+            <CollectionView ItemsSource="{Binding LastItems}"
+                            x:Name="SearchCollectionView"
+                                    Margin="10,2,0,10" VerticalOptions="FillAndExpand"
+                                    SelectionMode="Single"
+                                    VerticalScrollBarVisibility="Never"
+                                    Grid.Row="4">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+
+                            <pancake:PancakeView Grid.Row="0" CornerRadius="20" Margin="0,0,10,0">
+                                <Image Source="{Binding ImageUrl}" HeightRequest="180" Aspect="AspectFill"/>
+                            </pancake:PancakeView>
+
+                            <Frame Grid.Row="1" Padding="10" Margin="20,-80,20,70" BackgroundColor="White" CornerRadius="15"
+                                           HorizontalOptions="End">
+                                <Label Text="{Binding Price}" FontSize="Body" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"
+                                               FontAttributes="Bold" TextColor="Black" HeightRequest="15"/>
+                            </Frame>
+
+                            <Label Grid.Row="1" Text="{Binding Name}" FontSize="22" FontAttributes="Bold"
+                                           VerticalTextAlignment="Center" TextColor="Black"/>
+
+                            <Image Grid.Row="2" Margin="5,0,0,0" Source="coeur.png" HorizontalOptions="Start" WidthRequest="20"/>
+
+                            <Label Grid.Row="2" Margin="40,0,0,0" FontSize="15" VerticalOptions="Center">
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text="{Binding Rating}" FontAttributes="Bold" TextColor="RED"/>
+                                        <Span Text="{Binding Description}" TextColor="#a4a7b6" />
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

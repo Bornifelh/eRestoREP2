@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:helpers="clr-namespace:eResto.Helpers"
+             xmlns:vm="clr-namespace:eResto.ViewModels"
+             x:Class="eResto.Model.NouveauCompte" BackgroundColor="#009fe3">
+
+    <ContentPage.BindingContext>
+        <vm:LoginViewModel/>
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        
+            <Grid Padding="10" VerticalOptions="Center">
+            
+                
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+                
+                <!--#Logo et titre-->
+            <StackLayout Grid.Row="0" VerticalOptions="Center">
+                <Image Source="logo.png" WidthRequest="50"
+                       HeightRequest="100" />
+                <Label Text="NOUVEAU COMPTE" TextColor="#dfdc01" 
+                       FontSize="25" HorizontalOptions="Center" FontFamily="CabinSketch" />
+            </StackLayout>
+                
+            <!--#Fin Logo et titre-->
+
+            <StackLayout Grid.Row="1" Spacing="10">
+                <Entry Placeholder="Nom et Prénom" x:Name="NomEntry"
+                       BackgroundColor="#009fe3" PlaceholderColor="Black"/>
+
+                <Entry Placeholder="Nom utilisateur" x:Name="UsernameEntry"
+                       BackgroundColor="#009fe3" PlaceholderColor="Black"/>
+
+                <Entry Placeholder="Mot de passe" x:Name="PasswordEntry"
+                       IsPassword="True" BackgroundColor="#009fe3" PlaceholderColor="Black"/>
+
+                <Entry Placeholder="E-mail" x:Name="EmailEntry"
+                       BackgroundColor="#009fe3" PlaceholderColor="Black" Keyboard="Email"/>
+
+                <Entry Placeholder="Téléphone" x:Name="PhoneEntry" Keyboard="Telephone" 
+                       BackgroundColor="#009fe3" PlaceholderColor="Black"/>
+
+                <Entry Placeholder="Quartier" x:Name="QuartierEntry"
+                       BackgroundColor="#009fe3" PlaceholderColor="Black"/>
+
+                
+
+                <Button Text="Créer" HorizontalOptions="Center" BackgroundColor="#dfdc01" Margin="0,20"
+                    TextColor="Black" WidthRequest="240" HeightRequest="40" CornerRadius="10" 
+                   x:Name="Save" Clicked="Save_Clicked" TextTransform="None"/>
+            </StackLayout>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

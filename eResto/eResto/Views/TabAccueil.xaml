@@ -1,0 +1,144 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+             ios:Page.UseSafeArea="True"
+             xmlns:pancake="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             xmlns:helpers="clr-namespace:eResto.Helpers"
+             xmlns:vm="clr-namespace:eResto.ViewModels"
+             BackgroundColor="White"
+             x:Class="eResto.Views.TabAccueil">
+    <ContentPage.BindingContext>
+        <vm:ProductsViewModel/>
+    </ContentPage.BindingContext>    
+
+    <ContentPage.Content>
+        
+        
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+
+            <Grid Margin="0,-7,0,0" Grid.Row="1" Grid.Column="0">
+                
+                <Frame Padding="2" BackgroundColor="#009fe3" CornerRadius="0" HeightRequest="40">
+                    <StackLayout Orientation="Horizontal" HorizontalOptions="End" Spacing="20">
+                        <Label x:Name="labelName" TextColor="White" HorizontalOptions="Center" VerticalOptions="Center"  />
+                        <ImageButton Source="icons8_administrator.png"  HeightRequest="25" BackgroundColor="Transparent" 
+                                     x:Name="profile" Clicked="Profile_Clicked" />
+
+                        <ImageButton Source="shopping.png"  HeightRequest="25" BackgroundColor="Transparent" 
+                                     x:Name="viewcart" Clicked="Viewcart_Clicked"/>
+                        <ImageButton Source="logout2.png" BackgroundColor="Transparent" HeightRequest="25"                                     
+                                     x:Name="logOut" Clicked="LogOut_Clicked"/>
+                    </StackLayout>
+                </Frame>
+                
+            </Grid>
+
+
+            <CollectionView ItemsSource="{Binding Categories}"                                    
+                                    HeightRequest="125" VerticalOptions="FillAndExpand"
+                                    HorizontalScrollBarVisibility="Never"
+                                    ItemsLayout="HorizontalList"
+                                    SelectionChanged="CollectionView_SelectionChanged"
+                                    SelectionMode="Single"
+                                    Grid.Row="2">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout Padding="4,10,2,0">
+                            <Frame  HeightRequest="80" WidthRequest="120" HasShadow="False" BackgroundColor="#009fe3" CornerRadius="10" Padding="0">
+                                <Image Source="{Binding ImageUrl}" Aspect="AspectFill"/>
+                            </Frame>
+                            <Label Text="{Binding CategoryName}" HorizontalTextAlignment="Center" TextColor="Black" Margin="10,0,0,0" />
+
+                        </StackLayout>
+                    </DataTemplate>
+
+                </CollectionView.ItemTemplate>
+            </CollectionView>         
+
+
+
+            
+            <Label Grid.Row="4" Text="Nos offres" FontSize="24" FontAttributes="Bold" TextColor="Black"
+                   HorizontalTextAlignment="Center" Margin="0,0,0,-20"/>
+
+            <CollectionView ItemsSource="{Binding FoodItems}" x:Name="CollectionMenu"
+                                    Margin="1,-205,1,-15" VerticalOptions="FillAndExpand"
+                                    VerticalScrollBarVisibility="Never"
+                                    SelectionMode="Single"
+                                    SelectionChanged="CollectionMenu_SelectionChanged"
+                                    Grid.Row="5">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+
+                            <pancake:PancakeView Grid.Row="0" CornerRadius="20,10,0,0" BackgroundColor="Black">
+                                <StackLayout Margin="0">
+                                    <Image Source="{Binding ImageUrl}" HeightRequest="180" Aspect="AspectFill"/>
+                                    <pancake:PancakeView Grid.Row="1" Background="#009fe3" Margin="0,-8">
+                                        <StackLayout>
+                                            <StackLayout HorizontalOptions="End">
+                                                <Grid>
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="Auto"/>
+                                                        <ColumnDefinition Width="Auto"/>
+                                                    </Grid.ColumnDefinitions>
+                                                    <Label Text="{Binding Price}" Grid.Column="0"  FontSize="24" HorizontalTextAlignment="End" VerticalTextAlignment="Center"
+                                               FontAttributes="Bold" TextColor="White" HeightRequest="60" Margin="20,-10,-1,-30"/>
+                                                    <Label Text="XAF" Grid.Column="1"  FontSize="24" HorizontalTextAlignment="End" VerticalTextAlignment="Center"
+                                               FontAttributes="Bold" TextColor="White" HeightRequest="60" Margin="0,-10,20,-30" />
+                                                </Grid>
+                                               
+                                            </StackLayout>
+                                            
+                                                   
+                                            <Label Grid.Row="1" Text="{Binding Name}" FontSize="22" FontAttributes="Bold"
+                                           VerticalTextAlignment="Center" TextColor="Black" Margin="5,-20,0,10"/>
+
+                                            <Image Grid.Row="2" Margin="5,0,0,0" Source="coeur.png" HorizontalOptions="Start" WidthRequest="20"/>
+
+                                            <Label Grid.Row="2" Margin="40,-25,0,10" FontSize="15" VerticalOptions="Center">
+                                                <Label.FormattedText>
+                                                    <FormattedString>
+                                                        <Span Text="{Binding Rating}" FontAttributes="Bold" TextColor="#dfdc01"/>
+                                                        <Span Text="{Binding Description}" TextColor="White"/>
+                                                    </FormattedString>
+                                                </Label.FormattedText>
+                                            </Label>
+                                        </StackLayout>
+
+                                    </pancake:PancakeView>
+                                </StackLayout>
+                                
+                                
+                            </pancake:PancakeView>
+                            
+
+                            
+
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+        </Grid>
+    </ContentPage.Content>
+
+</ContentPage>

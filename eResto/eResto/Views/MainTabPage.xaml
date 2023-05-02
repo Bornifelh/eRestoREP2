@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+            xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
+            xmlns:Views="clr-namespace:eResto.Views"
+            x:Class="eResto.Views.MainTabPage">
+
+    
+    
+    <TabbedPage.BarBackgroundColor>
+        <OnPlatform x:TypeArguments="Color">
+            <OnPlatform.iOS>#009fe3</OnPlatform.iOS>
+            <OnPlatform.Android>#009fe3</OnPlatform.Android>
+            
+        </OnPlatform>
+    </TabbedPage.BarBackgroundColor>
+
+    <TabbedPage.SelectedTabColor>#dfdc01</TabbedPage.SelectedTabColor>
+    <android:TabbedPage.ToolbarPlacement>Bottom</android:TabbedPage.ToolbarPlacement>
+    <TabbedPage.IconImageSource>logo.png</TabbedPage.IconImageSource>
+
+    <Views:TabAccueil IconImageSource="menu_carte.png"/>
+    <Views:EventsPage IconImageSource="event.png"/>    
+    <Views:TabSettings IconImageSource="icons8_settings.png"/>
+
+
+</TabbedPage>

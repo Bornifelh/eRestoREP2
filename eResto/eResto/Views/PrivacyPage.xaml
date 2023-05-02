@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="eRestoREP2.Views.PrivacyPage">
+
+    <WebView x:Name="maWebView" Source="https://tchop-et-njoka.com/politique_tchop_ndjoka.html"/>
+    
+</ContentPage>

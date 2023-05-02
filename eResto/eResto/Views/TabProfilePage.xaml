@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+              xmlns:helpers="clr-namespace:eResto.Helpers"
+             xmlns:vm="clr-namespace:eResto.ViewModels"
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+             ios:Page.UseSafeArea="True"
+             BackgroundColor="AliceBlue"
+             x:Class="eResto.Views.TabProfilePage">
+    <ContentPage.BindingContext>
+        <vm:LoginViewModel/>
+    </ContentPage.BindingContext>
+    <StackLayout>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+
+        <StackLayout BackgroundColor="AliceBlue"   Orientation="Vertical" Grid.Row="0" Margin="0" HorizontalOptions="FillAndExpand">
+                <Frame Margin="10" CornerRadius="100" WidthRequest="160" HeightRequest="160" Padding="0" HorizontalOptions="Center">
+                <Image x:Name="photoprofileImage" WidthRequest="160" HeightRequest="160"  />
+            </Frame>
+            
+            <Label x:Name="nomLabel" FontSize="Large" HorizontalOptions="Center" TextColor="Black"/>
+            <Label x:Name="usernameLabel" FontSize="Medium" HorizontalOptions="Center" TextColor="Black"/>
+            <Label x:Name="phoneLabel" FontSize="Medium" HorizontalOptions="Center"/>
+            <ImageButton Source="icons8_administrator.png" HorizontalOptions="Center" HeightRequest="60" WidthRequest="50" BackgroundColor="#009fe3" 
+                         x:Name="MajProfile" Clicked="MajProfile_Clicked"/>
+
+            </StackLayout>
+    </Grid>
+    </StackLayout>
+</ContentPage>

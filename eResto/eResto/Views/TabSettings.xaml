@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="eResto.Views.TabSettings">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+              
+        <StackLayout Grid.Row="1" Orientation="Horizontal" HorizontalOptions="Center" Spacing="20" Margin="0,5,0,0">
+            <StackLayout>
+                <ImageButton x:Name="transactions" Source="transaction_tab_page.png" CornerRadius="13"  HeightRequest="80"
+                   WidthRequest="100" HorizontalOptions="Center" BackgroundColor="#009fe3"
+                             Clicked="Transactions_Clicked"/>
+                <Label Text="Mes transactions" HorizontalOptions="Center" TextColor="#009fe3"/>
+            </StackLayout>
+            <StackLayout>
+                <ImageButton Source="shopping_carts_icon.png" CornerRadius="13"  HeightRequest="80" 
+                   WidthRequest="100" BackgroundColor="#009fe3" Clicked="ImageButton_Clicked" />
+                <Label Text="Mon panier" HorizontalOptions="Center" TextColor="#009fe3"/>
+            </StackLayout>
+            <StackLayout>
+                <ImageButton Source="icons8_administrator.png" CornerRadius="13"  HeightRequest="80" 
+                   WidthRequest="100" BackgroundColor="#009fe3" x:Name="profile" Clicked="Profile_Clicked" />
+             <Label Text="Profile" HorizontalOptions="Center" TextColor="#009fe3"/>
+            </StackLayout>
+
+        </StackLayout>
+        <StackLayout Grid.Row="2" HorizontalOptions="FillAndExpand" VerticalOptions="Start" Margin="10,0,10,0" >
+
+            <!--#region 
+            <Button Text="Configuration Categories" x:Name="ButtonCategories"
+                    Clicked="ButtonCategories_Clicked" BackgroundColor="#009fe3" CornerRadius="12"/>
+            -->
+
+            <!--<Button Text="Configuration Produits" x:Name="ButtonProducts"
+                    Clicked="ButtonProducts_Clicked" BackgroundColor="#009fe3" CornerRadius="12"/>-->
+
+            <Button Text="Mise en place du panier" x:Name="ButtonCart" TextColor="White"
+                    Clicked="ButtonCart_Clicked" BackgroundColor="#009fe3" CornerRadius="12"/>
+
+
+            <Button Text="Support technique" x:Name="supportTech" TextColor="White"
+                    Clicked="SupportTech_Clicked" FontAttributes="Bold" ContentLayout="Left,0"
+                    TextTransform="Uppercase" BackgroundColor="#009fe3" CornerRadius="12"/>
+            
+            <Button Text="À propos" x:Name="ButtonApropos" TextColor="White"
+                    Clicked="ButtonApropos_Clicked" FontAttributes="Bold" ContentLayout="Left,0"
+                    TextTransform="Uppercase" BackgroundColor="#009fe3" CornerRadius="12"/>
+
+            <Button Text="Politique de confidentialité" x:Name="Privacy" TextColor="White"
+                    Clicked="Privacy_Clicked" FontAttributes="Bold" ContentLayout="Left,0"
+                    TextTransform="Uppercase" BackgroundColor="#009fe3" CornerRadius="12"/>
+        </StackLayout>
+
+    </Grid>
+    
+        
+</ContentPage>

@@ -1,0 +1,134 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:pancake="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             xmlns:helpers="clr-namespace:eResto.Helpers"
+             xmlns:vm="clr-namespace:eResto.ViewModels"
+             xmlns:ac="clr-namespace:eResto.Services"
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+             ios:Page.UseSafeArea="True"
+             x:Class="eResto.Views.TabPanierPage"
+             Visual="Material"             
+             BackgroundColor="#009fe3">
+    <ContentPage.BindingContext>
+        <vm:CartViewModel/>
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        
+        <Grid BackgroundColor="#3baa34">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="100" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            
+            <BoxView Grid.Row="0" />
+
+            <Label Text="Tchop et Ndjoka" FontSize="30" TextColor="WhiteSmoke"
+                   FontFamily="CabinSketch"
+                   HorizontalOptions="Center" VerticalOptions="Center" />
+
+            <Label x:Name="LabelName" FontSize="Subtitle" TextColor="WhiteSmoke"
+                   HorizontalOptions="Center" VerticalOptions="End"/>
+            
+            <ImageButton Source="back.png" BackgroundColor="Transparent" HorizontalOptions="Start"
+                         WidthRequest="30" Margin="10"
+                          VerticalOptions="Start" Clicked="ImageButton_Clicked"/>
+
+           
+
+            <pancake:PancakeView Grid.Row="1" BackgroundColor="WhiteSmoke"
+                                 CornerRadius="20,20,20,20" Margin="5,0,5,0">
+                <ListView x:Name="ListViewCartItems" Margin="20"
+                          SeparatorVisibility="None" BackgroundColor="WhiteSmoke"
+                          ItemsSource="{Binding CartItems}"
+                          Header="" HasUnevenRows="True">
+                    <ListView.HeaderTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Label Text="ID" Grid.Column="0" FontSize="Subtitle" 
+                                       TextColor="Green" />
+                                <Label Text="Nom" Grid.Column="1" FontSize="Subtitle" 
+                                       TextColor="Green" />
+                                <Label Text="Prix" Grid.Column="2" FontSize="Subtitle" 
+                                       TextColor="Green" />
+                                <Label Text="Qté" Grid.Column="3" FontSize="Subtitle" 
+                                       TextColor="Green" />
+                                <Label Text="Total" Grid.Column="4" FontSize="Subtitle" 
+                                       TextColor="Green" />
+                            </Grid>
+                        </DataTemplate>
+                    </ListView.HeaderTemplate>
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <ViewCell.View>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="30"/>
+                                            <ColumnDefinition Width="100" />
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="*" />
+                                        </Grid.ColumnDefinitions>
+                                        <Label Text="{Binding ProductId}" Grid.Column="0" FontSize="Body" 
+                                               TextColor="Green" />
+                                        <Label Text="{Binding ProductName}" Grid.Column="1" FontSize="Body" 
+                                               TextColor="Green" />
+                                        <Label Text="{Binding Price}" Grid.Column="2" FontSize="Body" 
+                                               TextColor="Green" />
+                                        <Label Text="{Binding Quantity}" Grid.Column="3" FontSize="Body" 
+                                               TextColor="Green" />
+                                        <Label Text="{Binding Total}" Grid.Column="4" FontSize="Body" 
+                                               TextColor="Green" />
+
+                                    </Grid>
+                                </ViewCell.View>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </pancake:PancakeView>
+            <StackLayout Grid.Row="2">
+                <Label Margin="0,0,10,0" Text="{Binding TotalGeneral, StringFormat='Total à payer : {0}'}"
+                   Grid.Row="2" HorizontalTextAlignment="End" FontSize="Title"
+                   TextColor="WhiteSmoke" />
+
+                <Picker Title="Emporter ou sur place" x:Name="EmporterouPas" Margin="10,0,10,0">
+                    
+                    <Picker.ItemsSource>
+                        <x:Array Type="{x:Type x:String}">
+                            <x:String>Sur place</x:String>
+                            <x:String>Emporter</x:String>
+                            <x:String>Livrer à domicile</x:String>
+                        </x:Array>
+                    </Picker.ItemsSource>
+                </Picker>
+                
+                <Picker Title="Mode de paiement" BindingContext="{Binding ModePaiement}"
+                    BackgroundColor="White" Margin="10,0,10,0"
+                        x:Name="liname" />
+
+                <Button Text="Commander Maintenant" TextColor="White" BackgroundColor="#009fe3"
+                     CornerRadius="13" Margin="10,0,10,0"
+                     
+                    HorizontalOptions="FillAndExpand" VerticalOptions="Center"
+                       x:Name="ValidationPaiement"
+                        Command="{Binding PlaceOrdersCommand}"/>
+
+                <Button Text="Vider mon panier" TextColor="White" BackgroundColor="Red"
+                    Clicked="Button_Clicked" CornerRadius="13" Margin="10,0,10,0"
+                    HorizontalOptions="FillAndExpand" VerticalOptions="Center" />
+            </StackLayout>
+            
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>
